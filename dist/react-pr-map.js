@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      data: _data2['default'],
 	      attrs: {
 	        fill: this.props.fill ? this.props.fill : 'lightgreen',
-	        stroke: this.props.stroke ? this.props.stroke : '#FCFCFC',
+	        stroke: this.props.stroke ? this.props.stroke : 'white',
 	        'stroke-miterlimit': this.props.strokeMiterlimit ? this.props.strokeMiterlimit : '10',
 	        'stroke-width': this.props.strokeWidth ? this.props.strokeWidth : '0',
 	        'stroke-opacity': this.props.strokeOpacity ? this.props.strokeOpacity : '1'

@@ -7,7 +7,7 @@ module.exports = {
     libraryTarget: 'umd',
 
     path: path.resolve(__dirname, 'dist'),
-    filename: 'pr-map.js'
+    filename: 'react-pr-map.js'
   },
   module: {
     loaders: [
