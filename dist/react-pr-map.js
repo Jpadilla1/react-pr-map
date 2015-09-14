@@ -93,102 +93,48 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _classCallCheck(this, PRMap);
 
 	    _get(Object.getPrototypeOf(PRMap.prototype), 'constructor', this).call(this, props);
-
-	    this.state = {
-	      data: _data2['default'],
-	      attrs: {
-	        fill: this.props.fill ? this.props.fill : 'lightgreen',
-	        stroke: this.props.stroke ? this.props.stroke : 'white',
-	        'stroke-miterlimit': this.props.strokeMiterlimit ? this.props.strokeMiterlimit : '10',
-	        'stroke-width': this.props.strokeWidth ? this.props.strokeWidth : '0',
-	        'stroke-opacity': this.props.strokeOpacity ? this.props.strokeOpacity : '1'
-	      }
-	    };
 	  }
 
 	  _createClass(PRMap, [{
-	    key: 'handleClick',
-	    value: function handleClick(evt, elem) {
-	      if (this.props.handleClick) {
-	        this.props.handleClick(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleHover',
-	    value: function handleHover(evt, elem) {
-	      if (this.props.handleHover) {
-	        this.props.handleHover(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleMouseOver',
-	    value: function handleMouseOver(evt, elem) {
-	      if (this.props.handleMouseOver) {
-	        this.props.handleMouseOver(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleMouseOut',
-	    value: function handleMouseOut(evt, elem) {
-	      if (this.props.handleMouseOut) {
-	        this.props.handleMouseOut(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleMouseUp',
-	    value: function handleMouseUp(evt, elem) {
-	      if (this.props.handleMouseUp) {
-	        this.props.handleMouseUp(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleMouseDown',
-	    value: function handleMouseDown(evt, elem) {
-	      if (this.props.handleMouseDown) {
-	        this.props.handleMouseDown(evt, elem);
-	      }
-	    }
-	  }, {
-	    key: 'handleMouseMove',
-	    value: function handleMouseMove(evt, elem) {
-	      if (this.props.handleMouseMove) {
-	        this.props.handleMouseMove(evt, elem);
-	      }
-	    }
-	  }, {
 	    key: 'drawMap',
 	    value: function drawMap() {
-	      var _this = this;
+	      this.paper = (0, _webpackRaphael2['default'])('map', '800', '300').setViewBox(100, 100, 1000, 400);
 
-	      this.state.paper = (0, _webpackRaphael2['default'])('map', '800', '300').setViewBox(100, 100, 1000, 400);
+	      var component = this;
 
 	      var _iteratorNormalCompletion = true;
 	      var _didIteratorError = false;
 	      var _iteratorError = undefined;
 
 	      try {
-	        for (var _iterator = _getIterator(_Object$keys(this.state.data)), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        for (var _iterator = _getIterator(_Object$keys(this.props.data)), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	          var key = _step.value;
 
-	          var value = this.state.data[key];
+	          var value = this.props.data[key];
 
-	          this.state.paper.path(value.path).attr(this.state.attrs).data({
+	          this.paper.path(value.path).attr({
+	            fill: this.props.fill,
+	            stroke: this.props.stroke,
+	            'stroke-miterlimit': this.props['stroke-miterlimit'],
+	            'stroke-width': this.props['stroke-width'],
+	            'stroke-opacity': this.props['stroke-opacity']
+	          }).data({
 	            id: key,
 	            town: value.town
 	          }).click(function (evt) {
-	            _this.handleClick(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleClick(evt, this);
 	          }).hover(function (evt) {
-	            _this.handleHover(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleHover(evt, this);
 	          }).mouseover(function (evt) {
-	            _this.handleMouseOver(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleMouseOver(evt, this);
 	          }).mouseout(function (evt) {
-	            _this.handleMouseOut(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleMouseOut(evt, this);
 	          }).mouseup(function (evt) {
-	            _this.handleMouseUp(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleMouseUp(evt, this);
 	          }).mousedown(function (evt) {
-	            _this.handleMouseDown(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleMouseDown(evt, this);
 	          }).mousemove(function (evt) {
-	            _this.handleMouseDown(evt, _this.state.paper.getById(evt.target.raphaelid));
+	            component.props.handleMouseDown(evt, this);
 	          });
 	        }
 	      } catch (err) {
@@ -216,6 +162,55 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function render() {
 	      return _react2['default'].createElement('div', { id: 'map' });
 	    }
+	  }], [{
+	    key: 'propTypes',
+	    value: {
+	      fill: _react2['default'].PropTypes.string,
+	      stroke: _react2['default'].PropTypes.string,
+	      'stroke-miterlimit': _react2['default'].PropTypes.number,
+	      'stroke-width': _react2['default'].PropTypes.number,
+	      'stroke-opacity': _react2['default'].PropTypes.number,
+	      handleClick: _react2['default'].PropTypes.func,
+	      handleHover: _react2['default'].PropTypes.func,
+	      handleMouseOver: _react2['default'].PropTypes.func,
+	      handleMouseOut: _react2['default'].PropTypes.func,
+	      handleMouseUp: _react2['default'].PropTypes.func,
+	      handleMouseDown: _react2['default'].PropTypes.func,
+	      handleMouseMove: _react2['default'].PropTypes.func
+	    },
+	    enumerable: true
+	  }, {
+	    key: 'defaultProps',
+	    value: {
+	      data: _data2['default'],
+	      fill: 'lightgreen',
+	      stroke: 'white',
+	      'stroke-miterlimit': 10,
+	      'stroke-width': 0,
+	      'stroke-opacity': 1,
+	      handleClick: function handleClick() {
+	        return;
+	      },
+	      handleHover: function handleHover() {
+	        return;
+	      },
+	      handleMouseOver: function handleMouseOver() {
+	        return;
+	      },
+	      handleMouseOut: function handleMouseOut() {
+	        return;
+	      },
+	      handleMouseUp: function handleMouseUp() {
+	        return;
+	      },
+	      handleMouseDown: function handleMouseDown() {
+	        return;
+	      },
+	      handleMouseMove: function handleMouseMove() {
+	        return;
+	      }
+	    },
+	    enumerable: true
 	  }]);
 
 	  return PRMap;
