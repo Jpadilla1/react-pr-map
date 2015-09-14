@@ -1,11 +1,11 @@
 {
   "name": "react-pr-map",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "SVG Map React Component of Puerto Rico",
-  "main": "index.js",
+  "main": "dist/react-pr-map.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpadilla1/pr-map.git"
+    "url": "https://github.com/jpadilla1/react-pr-map.git"
   },
   "keywords": [
     "svg",
