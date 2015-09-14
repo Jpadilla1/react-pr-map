@@ -1,6 +1,6 @@
 {
   "name": "react-pr-map",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "SVG Map React Component of Puerto Rico",
   "main": "dist/react-pr-map.js",
   "repository": {
@@ -19,9 +19,9 @@
   "author": "Jose E. Padilla",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jpadilla1/pr-map/issues"
+    "url": "https://github.com/jpadilla1/react-pr-map/issues"
   },
-  "homepage": "https://github.com/jpadilla1/pr-map",
+  "homepage": "https://github.com/jpadilla1/react-pr-map",
   "peerDependencies": {
     "react": "^0.13.3",
     "webpack-raphael": "^2.1.4"
