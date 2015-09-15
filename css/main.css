@@ -1,0 +1,29 @@
+* {
+  font-family: Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+path {
+  cursor: pointer;
+}
+
+.gist {
+  margin: auto;
+  width: 480px;
+}
