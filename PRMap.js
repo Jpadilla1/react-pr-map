@@ -374,8 +374,16 @@ class PRMap extends React.Component {
     if (!('stroke-miterlimit' in attrs)) { attrs['stroke-miterlimit'] = this.props['stroke-miterlimit']; }
     if (!('stroke-width' in attrs)) { attrs['stroke-width'] = this.props['stroke-width']; }
     if (!('stroke-opacity' in attrs)) { attrs['stroke-opacity'] = this.props['stroke-opacity']; }
-
     return attrs;
+  }
+
+  transformProps(props) {
+    this._data = {};
+    for (let obj of props.data) {
+      let { id, ...rest } = obj;
+
+      this._data[id] = rest;
+    }
   }
 
   drawMap() {
@@ -386,7 +394,7 @@ class PRMap extends React.Component {
 
     for (let key of Object.keys(this.paths)) {
       let value = this.paths[key];
-      this.paper.path(value.path)
+      let path = this.paper.path(value.path)
         .attr(this.getAttrs(key))
         .data({
           id: key,
@@ -399,15 +407,29 @@ class PRMap extends React.Component {
         .mouseup(function(evt) { component.props.handleMouseUp(evt, this); })
         .mousedown(function(evt) { component.props.handleMouseDown(evt, this); })
         .mousemove(function(evt) { component.props.handleMouseDown(evt, this); });
+      path.id = key;
     }
   }
   componentWillMount() {
-    this._data = {};
-    for (let obj of this.props.data) {
-      let { id, ...rest } = obj;
-
-      this._data[id] = rest;
+    if (this.props.data) {
+      this.transformProps(this.props);
     }
+  }
+  applyProps() {
+    for (var town in this._data) {
+      this.paper.getById(town).attr('fill', this._data[town].fill);
+      this.paper.getById(town).attr('stroke', this._data[town].stroke);
+      this.paper.getById(town).attr('stroke-miterlimit', this._data[town]['stroke-miterlimit']);
+      this.paper.getById(town).attr('stroke-width', this._data[town]['stroke-width']);
+      this.paper.getById(town).attr('stroke-opacity', this._data[town]['stroke-opacity']);
+    }
+  }
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.data) {
+      this.transformProps(nextProps);
+      this.applyProps();
+    }
+    return true;
   }
   componentDidMount() {
     this.drawMap();
