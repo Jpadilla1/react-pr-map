@@ -1,6 +1,6 @@
 {
   "name": "react-pr-map",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "SVG Map React Component of Puerto Rico",
   "main": "dist/react-pr-map.js",
   "repository": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/jpadilla1/react-pr-map",
   "peerDependencies": {
-    "react": "^0.13.3",
+    "react": "^0.14.2",
     "webpack-raphael": "^2.1.4"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
-    "react": "^0.13.3",
+    "react": "^0.14.2",
     "webpack-raphael": "^2.1.4"
   },
   "scripts": {
