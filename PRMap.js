@@ -342,7 +342,10 @@ class PRMap extends React.Component {
     handleMouseOut: React.PropTypes.func,
     handleMouseUp: React.PropTypes.func,
     handleMouseDown: React.PropTypes.func,
-    handleMouseMove: React.PropTypes.func
+    handleMouseMove: React.PropTypes.func,
+    width: React.PropTypes.string,
+    height: React.PropTypes.string,
+    viewBox: React.PropTypes.string
   }
 
   static defaultProps = {
@@ -352,17 +355,18 @@ class PRMap extends React.Component {
     'stroke-miterlimit': 10,
     'stroke-width': 0,
     'stroke-opacity': 1,
-    handleClick: () => { return; },
-    handleHover: () => { return; },
-    handleMouseOver: () => { return; },
-    handleMouseOut: () => { return; },
-    handleMouseUp: () => { return; },
-    handleMouseDown: () => { return; },
-    handleMouseMove: () => { return; }
+    handleClick: ()=> { return; },
+    handleHover: ()=> { return; },
+    handleMouseOver: ()=> { return; },
+    handleMouseOut: ()=> { return; },
+    handleMouseUp: ()=> { return; },
+    handleMouseDown: ()=> { return; },
+    handleMouseMove: ()=> { return; }
   }
 
   getAttrs(town) {
     let attrs = {};
+
     if (town in this._data) {
       for (let key of Object.keys(this._data[town])) {
         attrs[key] = this._data[town][key];
@@ -379,21 +383,26 @@ class PRMap extends React.Component {
 
   transformProps(props) {
     this._data = {};
-    for (let obj of props.data) {
-      let { id, ...rest } = obj;
+    for (const obj of props.data) {
+      const {id, ...rest} = obj;
 
       this._data[id] = rest;
     }
   }
 
   drawMap() {
-    this.paper = Raphael('map', '800', '300')
-                .setViewBox(100, 100, 1000, 400);
+    const width = (this.props.width) ? this.props.width : 800;
+    const height = (this.props.height) ? this.props.height : 300;
+    const [x, y, w, h] = (this.props.viewBox) ?
+        this.props.viewBox.split() : [100, 100, 1000, 400];
+
+    this.paper = Raphael('map', String(width), String(height))
+                .setViewBox(x, y, w, h);
 
     const component = this;
 
-    for (let key of Object.keys(this.paths)) {
-      let value = this.paths[key];
+    for (const key of Object.keys(this.paths)) {
+      const value = this.paths[key];
       let path = this.paper.path(value.path)
         .attr(this.getAttrs(key))
         .data({
