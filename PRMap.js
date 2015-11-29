@@ -401,14 +401,10 @@ class PRMap extends React.Component {
 
     const component = this;
 
-    for (const key of Object.keys(this.paths)) {
-      const value = this.paths[key];
+    for (let key of Object.keys(this.paths)) {
+      let value = this.paths[key];
       let path = this.paper.path(value.path)
         .attr(this.getAttrs(key))
-        .data({
-          id: key,
-          town: value.town
-        })
         .click(function(evt) { component.props.handleClick(evt, this); })
         .hover(function(evt) { component.props.handleHover(evt, this); })
         .mouseover(function(evt) { component.props.handleMouseOver(evt, this); })
@@ -417,6 +413,7 @@ class PRMap extends React.Component {
         .mousedown(function(evt) { component.props.handleMouseDown(evt, this); })
         .mousemove(function(evt) { component.props.handleMouseDown(evt, this); });
       path.id = key;
+      path.town = value.town;
     }
   }
   componentWillMount() {
