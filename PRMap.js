@@ -394,7 +394,7 @@ class PRMap extends React.Component {
     const width = (this.props.width) ? this.props.width : 800;
     const height = (this.props.height) ? this.props.height : 300;
     const [x, y, w, h] = (this.props.viewBox) ?
-        this.props.viewBox.split() : [100, 100, 1000, 400];
+        this.props.viewBox.split(' ') : [100, 100, 1000, 400];
 
     this.paper = Raphael('map', String(width), String(height))
                 .setViewBox(x, y, w, h);

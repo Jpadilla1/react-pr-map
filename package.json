@@ -1,6 +1,6 @@
 {
   "name": "react-pr-map",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "SVG Map React Component of Puerto Rico",
   "main": "dist/react-pr-map.js",
   "repository": {
